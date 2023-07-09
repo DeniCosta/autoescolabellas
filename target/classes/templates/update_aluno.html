@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+	<title>Autoescola Bellas</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<!--bootstrap-->
+	<link rel="stylesheet"
+		  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+		  crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+	<h1>Escala certa</h1>
+	<hr>
+	<h2>Editar Aluno</h2>
+
+	<form action="#" th:action="@{/saveAluno}" th:object="${aluno}"
+		  method="POST">
+
+		<!-- Add hidden form field to handle update -->
+		<input type="hidden" th:field="*{id}" />
+
+		<input type="text" th:field="*{ladv}" class="form-control mb-4 col-4">
+
+		<input type="text" th:field="*{nome}" class="form-control mb-4 col-4">
+
+		<input type="text" th:field="*{email}" class="form-control mb-4 col-4">
+		<input type="text" th:field="*{telefone}" class="form-control mb-4 col-4">
+		<input type="text" th:field="*{categoria}" class="form-control mb-4 col-4">
+
+		<button type="submit" class="btn btn-info col-2"> Salvar alterações</button>
+	</form>
+
+	<hr>
+
+	<a th:href = "@{/viewHomePage}"> Voltar para a lista de alunos</a>
+</div>
+</body>
+</html>
