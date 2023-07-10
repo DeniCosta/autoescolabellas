@@ -43,16 +43,16 @@ public class AlunoController {
 		return "redirect:/viewHomePage";
 	}
 
-	@GetMapping("/showFormForUpdate/{id}")
-	public String showFormForUpdate(@PathVariable ( value = "id") long id, Model model) {
-
-		// get employee from the service
+	@GetMapping("/aluno/showFormForUpdate/{id}")
+	public String showFormForUpdateAluno(@PathVariable(value = "id") long id, Model model) {
+		// get aluno from the service
 		Aluno aluno = alunoService.getAlunoById(id);
 
-		// set employee as a model attribute to pre-populate the form
+		// set aluno as a model attribute to pre-populate the form
 		model.addAttribute("aluno", aluno);
 		return "update_aluno";
 	}
+
 
 	@GetMapping("/deleteAluno/{id}")
 	public String deleteAluno(@PathVariable (value = "id") long id) {

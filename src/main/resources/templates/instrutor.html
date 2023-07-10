@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org" lang="pt-br">
+<head>
+    <title>Autoescola Bellas</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--bootstrap-->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container my-2">
+    <div>
+        <h1>Instrutores</h1>
+        <a th:href="@{/}" class="btn btn-primary btn-sm mb-3"> Página inicial </a>
+    </div>
+
+    <a th:href="@{/instrutor/showNewInstrutorForm}" class="btn btn-primary btn-sm mb-3"> Cadastrar Instrutor </a>
+
+    <table class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>
+                <a th:href="@{'/instrutor/page/' + ${currentPage} + '?sortField=nome&sortDir=' + ${reverseSortDir}}">
+                    Nome</a>
+            </th>
+            <th>
+                <a th:href="@{'/instrutor/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">
+                    E-mail</a>
+            </th>
+            <th>
+                <a th:href="@{'/instrutor/page/' + ${currentPage} + '?sortField=telefone&sortDir=' + ${reverseSortDir}}">
+                    Telefone</a>
+            </th>
+            <th>
+                <a th:href="@{'/instrutor/page/' + ${currentPage} + '?sortField=categoria&sortDir=' + ${reverseSortDir}}">
+                    Categoria</a>
+            </th>
+            <th> Ações </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="instrutor : ${listInstrutores}">
+            <td th:text="${instrutor.nome}"></td>
+            <td th:text="${instrutor.email}"></td>
+            <td th:text="${instrutor.telefone}"></td>
+            <td th:text="${instrutor.categoria}"></td>
+            <td>
+                <a th:href="@{/instrutor/showFormForUpdate/{id}(id=${instrutor.id})}" class="btn btn-primary">Atualizar</a>
+                <a th:href="@{/instrutor/deleteInstrutor/{id}(id=${instrutor.id})}" class="btn btn-danger">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div th:if="${totalPages > 1}">
+        <div class="row col-sm-10">
+            <div class="col-sm-2">
+                Total de Registros: [[${totalItems}]]
+            </div>
+            <div class="col-sm-1">
+                <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                    <a th:if="${currentPage != i}" th:href="@{'/instrutor/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+                    <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+                </span>
+            </div>
+            <div class="col-sm-1">
+                <a th:if="${currentPage < totalPages}" th:href="@{'/instrutor/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Próxima</a>
+                <span th:unless="${currentPage < totalPages}">Próxima</span>
+            </div>
+
+            <div class="col-sm-1">
+                <a th:if="${currentPage < totalPages}" th:href="@{'/instrutor/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Última</a>
+                <span th:unless="${currentPage < totalPages}">Última</span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org" lang="pt-br">
 <head>
 	<title>Autoescola Bellas</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -14,8 +14,8 @@
 <div class="container my-2">
 	<h1>Página Inicial</h1>
 
-	<a th:href = "@{/viewHomePage}" class="btn btn-primary btn-sm mb-3"> Alunos </a>
-
+	<a th:href="@{/viewHomePage}" class="btn btn-primary btn-sm mb-3">Alunos</a>
+	<a th:href="@{/instrutor/listInstrutor}" class="btn btn-primary btn-sm mb-3">Instrutores</a>
 
 </div>
 
