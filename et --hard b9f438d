@@ -1,0 +1,129 @@
+[33mcommit b9f438daaeb41a04e066ee5b5841d90913e48d5b[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Denise Costa <denisecosta.codes@gmail.com>
+Date:   Sun Jul 16 15:37:41 2023 -0300
+
+    Feat: Adiciona página de login, adiciona página home
+
+ .idea/inspectionProfiles/Project_Default.xml       |  27 [32m+++++[m
+ pom.xml                                            |   4 [32m+[m[31m-[m
+ .../controller/AlunoController.java                |   2 [32m+[m[31m-[m
+ .../controller/AulaController.java                 | 106 [32m+++++++++++++++++++[m
+ .../controller/InstrutorController.java            |   2 [32m+[m[31m-[m
+ .../escalacerta/autoescolabellas/model/Aula.java   |  70 [32m++++++++++++[m
+ .../repository/AulaRepository.java                 |  17 [32m+++[m
+ src/main/resources/application.properties          |   7 [32m+[m[31m-[m
+ .../resources/static/assets/ESCALACERTA-LOGO.png   | Bin [31m0[m -> [32m11092[m bytes
+ .../resources/static/assets/logotipo_bellas.svg    |  92 [32m++++++++++++++++[m
+ src/main/resources/static/css/login.css            | 117 [32m+++++++++++++++++++++[m
+ src/main/resources/static/css/reset.css            |  10 [32m++[m
+ src/main/resources/static/index.html               |  87 [32m+++++++++++++++[m
+ .../static/js/daypilot/daypilot-all.min.js         |  16 [32m+++[m
+ src/main/resources/static/js/daypilot/daypilot.js  |  58 [32m++++++++++[m
+ src/main/resources/static/js/mascara.js            |   4 [32m+[m
+ .../resources/{ => static}/templates/aluno.html    |   0
+ src/main/resources/static/templates/home.html      |  92 [32m++++++++++++++++[m
+ .../{ => static}/templates/instrutor.html          |   2 [32m+[m[31m-[m
+ .../{ => static}/templates/new_aluno.html          |   0
+ .../{ => static}/templates/new_instrutor.html      |   0
+ .../{ => static}/templates/update_aluno.html       |   0
+ .../{ => static}/templates/update_instrutor.html   |   0
+ src/main/resources/templates/index.html            |  23 [31m----[m
+ target/classes/application.properties              |   7 [32m+[m[31m-[m
+ .../AulaController$EventCreateParams.class         | Bin [31m0[m -> [32m642[m bytes
+ .../AulaController$EventMoveParams.class           | Bin [31m0[m -> [32m628[m bytes
+ .../controller/AulaController.class                | Bin [31m0[m -> [32m4967[m bytes
+ .../escalacerta/autoescolabellas/model/Aula.class  | Bin [31m0[m -> [32m2270[m bytes
+ .../repository/AulaRepository.class                | Bin [31m0[m -> [32m1238[m bytes
+ target/classes/static/assets/ESCALACERTA-LOGO.png  | Bin [31m0[m -> [32m11092[m bytes
+ target/classes/static/assets/logotipo_bellas.svg   |  92 [32m++++++++++++++++[m
+ target/classes/static/css/login.css                | 117 [32m+++++++++++++++++++++[m
+ target/classes/static/css/reset.css                |  10 [32m++[m
+ target/classes/static/index.html                   |  87 [32m+++++++++++++++[m
+ .../classes/static/js/daypilot/daypilot-all.min.js |  16 [32m+++[m
+ target/classes/static/js/daypilot/daypilot.js      |  58 [32m++++++++++[m
+ target/classes/static/js/mascara.js                |   4 [32m+[m
+ target/classes/{ => static}/templates/aluno.html   |   0
+ target/classes/static/templates/home.html          |  92 [32m++++++++++++++++[m
+ .../classes/{ => static}/templates/instrutor.html  |   2 [32m+[m[31m-[m
+ .../classes/{ => static}/templates/new_aluno.html  |   0
+ .../{ => static}/templates/new_instrutor.html      |   0
+ .../{ => static}/templates/update_aluno.html       |   0
+ .../{ => static}/templates/update_instrutor.html   |   0
+ target/classes/templates/index.html                |  23 [31m----[m
+ 46 files changed, 1188 insertions(+), 56 deletions(-)
+
+[33mcommit f815cd9695edd64963311a8ac6c0c9dd5076f69d[m
+Author: Denise Costa <denisecosta.codes@gmail.com>
+Date:   Sun Jul 9 21:32:32 2023 -0300
+
+    Feat: cria a estrutura e funcionalidades iniciais para a entidade instrutor
+
+ .idea/jsLibraryMappings.xml                        |   6 [32m++[m
+ .idea/vcs.xml                                      |   1 [31m-[m
+ .../controller/AlunoController.java                |  10 [32m+[m[31m--[m
+ .../controller/InstrutorController.java            |  83 [32m+++++++++++++++++++++[m
+ .../autoescolabellas/model/Instrutor.java          |  64 [32m++++++++++++++++[m
+ .../repository/InstrutorRepository.java            |  10 [32m+++[m
+ .../autoescolabellas/service/InstrutorService.java |  14 [32m++++[m
+ .../service/InstrutorServiceImpl.java              |  57 [32m++++++++++++++[m
+ src/main/resources/templates/aluno.html            |   4 [32m+[m[31m-[m
+ src/main/resources/templates/index.html            |   8 [32m+[m[31m-[m
+ src/main/resources/templates/instrutor.html        |  82 [32m++++++++++++++++++++[m
+ src/main/resources/templates/new_instrutor.html    |  39 [32m++++++++++[m
+ src/main/resources/templates/update_aluno.html     |   8 [32m+[m[31m-[m
+ src/main/resources/templates/update_instrutor.html |  38 [32m++++++++++[m
+ .../controller/AlunoController.class               | Bin [31m4135[m -> [32m4146[m bytes
+ .../controller/InstrutorController.class           | Bin [31m0[m -> [32m4367[m bytes
+ .../autoescolabellas/model/Instrutor.class         | Bin [31m0[m -> [32m1803[m bytes
+ .../repository/InstrutorRepository.class           | Bin [31m0[m -> [32m474[m bytes
+ .../service/InstrutorService.class                 | Bin [31m0[m -> [32m882[m bytes
+ .../service/InstrutorServiceImpl.class             | Bin [31m0[m -> [32m4065[m bytes
+ target/classes/templates/aluno.html                |   4 [32m+[m[31m-[m
+ target/classes/templates/index.html                |   8 [32m+[m[31m-[m
+ target/classes/templates/instrutor.html            |  82 [32m++++++++++++++++++++[m
+ target/classes/templates/new_instrutor.html        |  39 [32m++++++++++[m
+ target/classes/templates/update_aluno.html         |   8 [32m+[m[31m-[m
+ target/classes/templates/update_instrutor.html     |  38 [32m++++++++++[m
+ 26 files changed, 577 insertions(+), 26 deletions(-)
+
+[33mcommit 758179b27ba607da9e3bce53b7fabb4385098702[m
+Author: Denise Costa <denisecosta.codes@gmail.com>
+Date:   Sun Jul 9 19:45:02 2023 -0300
+
+    Feat: cria estrutura do projeto no padrão MVC e funcionalidades iniciais da entidade aluno
+
+ .idea/.gitignore                                   |   8 [32m+[m
+ .idea/compiler.xml                                 |  18 [32m++[m
+ .idea/encodings.xml                                |   6 [32m+[m
+ .idea/inspectionProfiles/Project_Default.xml       |   6 [32m+[m
+ .idea/jarRepositories.xml                          |  20 [32m++[m
+ .idea/misc.xml                                     |  12 [32m+[m
+ .idea/uiDesigner.xml                               | 124 [32m+++++++++[m
+ .idea/vcs.xml                                      |   7 [32m+[m
+ mvnw                                               | 310 [32m+++++++++++++++++++++[m
+ mvnw.cmd                                           | 182 [32m++++++++++++[m
+ pom.xml                                            |  68 [32m+++++[m
+ .../AutoescolaBellasApplication.java               |  13 [32m+[m
+ .../controller/AlunoController.java                |  87 [32m++++++[m
+ .../escalacerta/autoescolabellas/model/Aluno.java  |  57 [32m++++[m
+ .../repository/AlunoRepository.java                |  12 [32m+[m
+ .../autoescolabellas/service/AlunoService.java     |  15 [32m+[m
+ .../autoescolabellas/service/AlunoServiceImpl.java |  57 [32m++++[m
+ src/main/resources/application.properties          |  16 [32m++[m
+ src/main/resources/templates/aluno.html            |  86 [32m++++++[m
+ src/main/resources/templates/index.html            |  23 [32m++[m
+ src/main/resources/templates/new_aluno.html        |  41 [32m+++[m
+ src/main/resources/templates/update_aluno.html     |  40 [32m+++[m
+ .../AutoescolaBellasApplicationTests.java          |  13 [32m+[m
+ target/classes/application.properties              |  16 [32m++[m
+ .../AutoescolaBellasApplication.class              | Bin [31m0[m -> [32m801[m bytes
+ .../controller/AlunoController.class               | Bin [31m0[m -> [32m4135[m bytes
+ .../escalacerta/autoescolabellas/model/Aluno.class | Bin [31m0[m -> [32m1984[m bytes
+ .../repository/AlunoRepository.class               | Bin [31m0[m -> [32m462[m bytes
+ .../autoescolabellas/service/AlunoService.class    | Bin [31m0[m -> [32m837[m bytes
+ .../service/AlunoServiceImpl.class                 | Bin [31m0[m -> [32m3985[m bytes
+ target/classes/templates/aluno.html                |  86 [32m++++++[m
+ target/classes/templates/index.html                |  23 [32m++[m
+ target/classes/templates/new_aluno.html            |  41 [32m+++[m
+ target/classes/templates/update_aluno.html         |  40 [32m+++[m
+ 34 files changed, 1427 insertions(+)

@@ -22,7 +22,7 @@ public class AlunoController {
 	private AlunoService alunoService;
 
 
-	// display list of employees
+
 	@GetMapping("/viewHomePage")
 	public String viewHomePage(Model model) {
 		return findPaginated(1, "nome", "asc", model);

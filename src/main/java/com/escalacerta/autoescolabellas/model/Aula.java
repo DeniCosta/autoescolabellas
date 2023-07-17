@@ -7,8 +7,6 @@ import java.time.LocalDateTime;
 @Table(name = "aulas")
 public class Aula {
 
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,11 +19,11 @@ public class Aula {
     @JoinColumn(name = "instrutor_id")
     private Instrutor instrutor;
 
-    @Column(name = "inicio")
-    private LocalDateTime start;
+    @Column(name = "horario")
+    private String horario;
 
-    @Column(name = "fim")
-    private LocalDateTime end;
+    @Column(name = "dia")
+    private String dia;
 
     public Long getId() {
         return id;
@@ -51,20 +49,19 @@ public class Aula {
         this.instrutor = instrutor;
     }
 
-    public LocalDateTime getStart() {
-        return start;
+    public String getHorario() {
+        return horario;
     }
 
-    public void setStart(LocalDateTime start) {
-        this.start = start;
+    public void setHorario(String horario) {
+        this.horario = horario;
     }
 
-    public LocalDateTime getEnd() {
-        return end;
+    public String getDia() {
+        return dia;
     }
 
-    public void setEnd(LocalDateTime end) {
-        this.end = end;
+    public void setDia(String dia) {
+        this.dia = dia;
     }
-
 }
